@@ -1,0 +1,96 @@
+html(manifest='manifest.appcache')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0')
+
+		title App
+		
+		link(rel='stylesheet', href='hn.css')
+		link(rel='stylesheet', href='style.css')
+		link(rel='shortcut icon', href='icons/favicon.ico')
+		link(rel='apple-touch-icon-precomposed', href='icons/touch-icon.png')
+	
+	body
+		#apploader
+		#overlay.hide
+		header.fake
+		
+		
+		#view-home.view.hidden
+			header
+				h1 Badge.iq
+				#view-home-refresh.header-button.header-button-icon.header-button-right
+					button: img(src='images/refresh-icon.png', alt='Refresh', width='14', height='18')
+			.scroll
+				section
+			footer
+		
+			
+		#view-comments.view.hidden
+			header
+				a.header-button.header-button-left.header-back-button(href='#/'): button
+					.tip: span
+					| Home
+				h1
+			.scroll
+				section
+			footer
+		
+				
+		#view-schedule.view.hidden
+			header
+				h1 Schedule
+			.scroll.striped
+				section
+					.grouped-tableview.cf
+						span.y-touch-icon
+						p The unofficial Hacker News mobile web app, specially designed to look and feel like a native iOS app.
+					ul.grouped-tableview.grouped-tableview-links
+						li: a.disclosure(href='http://news.ycombinator.com', target='_blank') Hacker News official site
+						li: a.disclosure(href='https://github.com/cheeaun/hnmobile', target='_blank') GitHub Project
+						li: a.disclosure(href='https://twitter.com/cheeaun', target='_blank') @cheeaun
+						li: a.disclosure(href='mailto:cheeaun+hnmobile@gmail.com?subject=HNmobile feedback', target='_blank') Email
+					p.foot-label Built by Lim Chee Aun.<br>Not affiliated with Hacker News or YCombinator.
+			footer
+		
+				
+		#view-artists.view.hidden
+			header
+				h1 Artists
+			.scroll.striped
+				section
+					.grouped-tableview.cf
+						span.y-touch-icon
+						p The unofficial Hacker News mobile web app, specially designed to look and feel like a native iOS app.
+			footer
+		
+				
+		#view-leaderboard.view.hidden
+			header
+				h1 Leaderboard
+			.scroll.striped
+				section
+					.grouped-tableview.cf
+						span.y-touch-icon
+						p The unofficial Hacker News mobile web app, specially designed to look and feel like a native iOS app.
+			footer
+		
+		
+		footer
+			ul
+				li: a#tab-home(href='#/home')
+					.icon
+					span Home
+				li: a#tab-schedule(href='#/schedule')
+					.icon
+					span Schedule
+				li: a#tab-artists(href='#/artists')
+					.icon
+					span Artists
+				li: a#tab-leaderboard(href='#/leaderboard')
+					.icon
+					span Leaderboard
+		
+		script(src='scripts.js')
+		script(src='templates.js')
+		script(src='hn.js')
