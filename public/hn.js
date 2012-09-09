@@ -418,7 +418,7 @@
 								return;
 							}
 							amplify.store.sessionStorage('hacker-item-' + id, data, {
-								expires: 1000*60*5 // 5 minutes
+								expires: 1 //1000*60*5 // 5 minutes
 							});
 							PubSub.publish('updateNewsStory', {
 								id: id,
@@ -812,7 +812,7 @@
 				}
 				amplify.store('hacker-news', data);
 				amplify.store('hacker-news-cached', true, {
-					expires: 1000*60*10 // 10 minutes
+					expires: 1 //1000*60*10 // 10 minutes
 				});
 				amplify.store('hacker-news2', null);
 				loadNews(data);

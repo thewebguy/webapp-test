@@ -2,6 +2,7 @@ html(manifest='manifest.appcache')
 	head
 		meta(charset='utf-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0')
+		meta(name='apple-mobile-web-app-capable', content='yes')
 
 		title App
 		
@@ -42,15 +43,6 @@ html(manifest='manifest.appcache')
 				h1 Schedule
 			.scroll.striped
 				section
-					.grouped-tableview.cf
-						span.y-touch-icon
-						p The unofficial Hacker News mobile web app, specially designed to look and feel like a native iOS app.
-					ul.grouped-tableview.grouped-tableview-links
-						li: a.disclosure(href='http://news.ycombinator.com', target='_blank') Hacker News official site
-						li: a.disclosure(href='https://github.com/cheeaun/hnmobile', target='_blank') GitHub Project
-						li: a.disclosure(href='https://twitter.com/cheeaun', target='_blank') @cheeaun
-						li: a.disclosure(href='mailto:cheeaun+hnmobile@gmail.com?subject=HNmobile feedback', target='_blank') Email
-					p.foot-label Built by Lim Chee Aun.<br>Not affiliated with Hacker News or YCombinator.
 			footer
 		
 				
@@ -73,6 +65,12 @@ html(manifest='manifest.appcache')
 					.grouped-tableview.cf
 						span.y-touch-icon
 						p The unofficial Hacker News mobile web app, specially designed to look and feel like a native iOS app.
+					ul.grouped-tableview.grouped-tableview-links
+						li: a.disclosure(href='http://news.ycombinator.com', target='_blank') Hacker News official site
+						li: a.disclosure(href='https://github.com/cheeaun/hnmobile', target='_blank') GitHub Project
+						li: a.disclosure(href='https://twitter.com/cheeaun', target='_blank') @cheeaun
+						li: a.disclosure(href='mailto:cheeaun+hnmobile@gmail.com?subject=HNmobile feedback', target='_blank') Email
+					p.foot-label Built by Lim Chee Aun.<br>Not affiliated with Hacker News or YCombinator.
 			footer
 		
 		

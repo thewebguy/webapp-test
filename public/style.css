@@ -59,3 +59,61 @@ footer .icon {
 	-webkit-user-select: none;
 	-webkit-touch-callout: none;
 }
+
+
+.post-image {
+	float: left;
+}
+
+.post-info {
+	float: left;
+	padding-left: 10px;
+	width: 80%;
+	font-size: 12px;
+}
+
+	.post-name {
+		font-weight: bold;
+	}
+	
+	.post-username {
+		font-style: italic;
+		padding-left: 5px;
+	}
+	
+	.post-text {
+		margin: 0;
+		padding: 0;
+	}
+
+
+.tableview-links li > a .story {
+	padding: 5px;
+}
+
+.tableview-links {
+	background: rgb(228,228,228);
+}
+
+.tableview-links li {
+	border: 0;
+}
+
+.tableview-links li > a {
+	background: #fff;
+	margin: 0 5px 5px;
+	width: 90%;
+
+/*
+	border-width: 0 4px 4px 0;
+	border-color: rgb(0,188,255);	
+	border-style: solid;
+*/
+	
+	border-width: 4px;
+	border-image: url(/images/border.png) 4 4 4 4 repeat;
+	padding-bottom: 4px;
+}
+
+
+

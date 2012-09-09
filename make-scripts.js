@@ -5,12 +5,12 @@ var uglifyjs = require('uglify-js');
 var parser = uglifyjs.parser;
 var uglify = uglifyjs.uglify;
 
-fs.readdir('js', function(e, files){
+fs.readdir('public/js', function(e, files){
 	if (e) throw e;
 	var code = '';
 	files.forEach(function(file){
 		if (/\.js$/i.test(file)){
-			code += fs.readFileSync('js/' + file, 'ascii');
+			code += fs.readFileSync('public/js/' + file, 'ascii');
 		}
 	});
 	
@@ -18,7 +18,7 @@ fs.readdir('js', function(e, files){
 	ast = uglify.ast_mangle(ast);
 	ast = uglify.ast_squeeze(ast);
 	var finalCode = uglify.gen_code(ast);
-	fs.writeFile('scripts.js', finalCode, function(){
-		console.log('scripts.js created.');
+	fs.writeFile('public/scripts.js', finalCode, function(){
+		console.log('public/scripts.js created.');
 	});
 });

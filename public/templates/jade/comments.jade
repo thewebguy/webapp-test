@@ -1,0 +1,9 @@
+{{#comments}}
+li
+	p.metadata
+		b {{user}}
+		time{{time_ago}}
+	{{{content}}}
+	ul
+		{{>comments_list}}
+{{/comments}}

@@ -1,0 +1,10 @@
+li(data-index='{{i}}', class='post-{{type}}', id='story-{{_id}}')
+	a(href='#/item/{{_id}}', selected='{{#selected}}selected{{/selected}}')
+		.story
+			img.post-image(src='{{image}}')
+			.post-info
+				span.post-name {{name}}
+				{{#username}}
+				span.post-username @{{username}}
+				{{/username}}
+				p.post-text {{text}}

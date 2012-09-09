@@ -172,6 +172,7 @@ header.fake,
 	position: relative;
 }
 .view>.scroll.striped{
+/*
 	background-color: #cbd2d8;
 	background-image: -webkit-linear-gradient(left, #c5ccd4, #c5ccd4 71.4%, #cbd2d8 71.5%, #cbd2d8);
 	background-image: -moz-linear-gradient(left, #c5ccd4, #c5ccd4 71.4%, #cbd2d8 71.5%, #cbd2d8);
@@ -183,6 +184,7 @@ header.fake,
 	-ms-background-size: 7px 1px;
 	-o-background-size: 7px 1px;
 	background-size: 7px 1px;
+*/
 }
 .view>.scroll.striped p.foot-label{
 	margin: 11px 10px 0;
@@ -426,6 +428,7 @@ header.fake,
 	color: #666d74;
 }
 .tableview-links li>a .story{
+	 padding-left: 15px;
 	-webkit-box-flex: 1;
 	-moz-box-flex: 1;
 	box-flex: 1;

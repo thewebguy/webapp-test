@@ -40,7 +40,7 @@
 	
 	var hnapi = {
 		
-		url: 'http://node-hnapi.herokuapp.com/', // Heroku
+		url: 'http://localhost:3001/', // Heroku
 		url2: 'http://node-hnapi.nodester.com/', // Nodester
 		// Note: Nodester is the backup for now, in case Heroku is down (once in a while)
 
