@@ -88,6 +88,15 @@
 			var t = TEMPLATES[template];
 			if (!t) return;
 			if (!data) return t;
+			
+			if (data.text) {
+				if (template == 'post') {
+					data.text = replaceURLWithHTMLFakeLinks(data.text);
+				} else {
+					data.text = replaceURLWithHTMLLinks(data.text);
+				}
+			}
+			
 			return t.render(data);
 		},
 		getScreenState = function(){
@@ -113,24 +122,28 @@
 	};
 	
 	var currentView = null;
+	var currentTab = null;
 	
 	var routes = {
 		'/': function(){
+			setSelectedTab('home');
+			
 			var view = $('view-home');
 			if (!isWideScreen){
+				
 				if (!currentView){
 					hideAllViews();
 					view.classList.remove('hidden');
-				} else if (currentView == 'schedule' || currentView == 'leaderboard' || currentView == 'artists'){
-					swap({
-						in: view,
-						out: $('view-' + currentView)
-					});
 				} else if (currentView == 'comments'){
 					slide({
 						in: view,
 						out: $('view-' + currentView),
 						direction: 'ltr'
+					});
+				} else {
+					swap({
+						in: view,
+						out: $('view-' + currentView)
 					});
 				}
 			} else {
@@ -146,8 +159,11 @@
 				PubSub.publish('updateCurrentStory');
 			}
 			currentView = 'home';
+			currentTab = currentView;
 		},
 		'/schedule': function(){
+			setSelectedTab('schedule');
+			
 			var view = $('view-schedule');
 			if (!isWideScreen){
 				if (!currentView){
@@ -168,8 +184,11 @@
 				}, 1);
 			}
 			currentView = 'schedule';
+			currentTab = currentView;
 		},
 		'/artists': function(){
+			setSelectedTab('artists');
+			
 			var view = $('view-artists');
 			if (!isWideScreen){
 				if (!currentView){
@@ -190,14 +209,17 @@
 				}, 1);
 			}
 			currentView = 'artists';
+			currentTab = currentView;
 		},
-		'/leaderboard': function(){
-			var view = $('view-leaderboard');
+		'/chat': function(){
+			setSelectedTab('chat');
+			
+			var view = $('view-chat');
 			if (!isWideScreen){
 				if (!currentView){
 					hideAllViews();
 					view.classList.remove('hidden');
-				} else if (currentView != 'leaderboard'){
+				} else if (currentView != 'chat'){
 					swap({
 						in: view,
 						out: $('view-' + currentView)
@@ -211,9 +233,35 @@
 					$('overlay').classList.remove('hide');
 				}, 1);
 			}
-			currentView = 'leaderboard';
+			currentView = 'chat';
+			currentTab = currentView;
 		},
-		'/item/(\\d+)': {
+		'/score': function(){
+			setSelectedTab('score');
+			
+			var view = $('view-score');
+			if (!isWideScreen){
+				if (!currentView){
+					hideAllViews();
+					view.classList.remove('hidden');
+				} else if (currentView != 'score'){
+					swap({
+						in: view,
+						out: $('view-' + currentView)
+					});
+				}
+			} else {
+				view.classList.remove('hidden');
+				$('view-home').classList.remove('hidden');
+				$('view-comments').classList.remove('hidden');
+				setTimeout(function(){
+					$('overlay').classList.remove('hide');
+				}, 1);
+			}
+			currentView = 'score';
+			currentTab = currentView;
+		},
+		'/item/([\\d\\w]+)': {
 			on: function(id){
 				var view = $('view-comments');
 				if (!isWideScreen){
@@ -237,6 +285,8 @@
 				}
 
 				currentView = 'comments';
+				currentTab = 'home';
+				
 				if (id && view.dataset.id != id){
 					view.dataset.id = id;
 
@@ -275,7 +325,7 @@
 
 							data.has_post = !!data.title;
 							if (!data.has_post){
-								viewHeading.innerHTML = '';
+								//viewHeading.innerHTML = 'Tweet';
 								viewSection.innerHTML = tmpl1.render(data);
 								PubSub.publish('adjustCommentsSection');
 								return;
@@ -499,10 +549,6 @@
 			if (isWideScreen && /schedule/i.test(currentRoute) && hash == '#/' && prevRoute){
 				location.hash = prevRoute;
 			} else {
-				if (currentView && currentView == 'comments') currentView = 'home';
-				if (currentView) $('tab-' + currentView).classList.remove('selected');
-				
-				$('tab-' + hash.replace('#/','')).classList.add('selected');
 				location.hash = hash;
 			}
 		}
@@ -651,7 +697,7 @@
 			}
 
 			if (more_comments_id && amplify.store.sessionStorage('hacker-comments-' + more_comments_id)){
-				_ul.insertAdjacentHTML('beforeend', '<li class="more-link-container"><a class="more-link" data-id="' + more_comments_id + '">More&hellip;</a></li>');
+				_ul.insertAdjacentHTML('beforeend', '<li class="more-link-container"><a class="post-inner more-link" data-id="' + more_comments_id + '">More&hellip;</a></li>');
 			}
 			ul.removeChild(li);
 			while (_ul.hasChildNodes()){
@@ -670,7 +716,7 @@
 
 	PubSub.subscribe('updateCurrentStory', function(msg, id){
 		if (!isWideScreen) return;
-		if (!id) id = (location.hash.match(/item\/(\d+)/) || [,''])[1];
+		if (!id) id = (location.hash.match(/item\/([\w\d]+)/) || [,''])[1];
 		var homeView = $('view-home');
 		var selectedLinks = homeView.querySelectorAll('a[href].selected');
 		for (var i=0, l=selectedLinks.length; i<l; i++){
@@ -942,4 +988,22 @@
 			r.send();
 		}, 1000);
 	}, false);
+
+	function setSelectedTab(tab) {
+		if (currentTab) $('tab-' + currentTab).classList.remove('selected');
+		$('tab-' + tab).classList.add('selected');
+	}
 })(window, document);
+
+
+
+function replaceURLWithHTMLFakeLinks(text) {
+	return replaceURLWithHTMLLinks(text, '<span class="fake-link">$1</span>');
+}
+
+function replaceURLWithHTMLLinks(text, replace) {
+	if (!replace) replace = '<a href="$1">$1</a>';
+  var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  return text.replace(exp,replace); 
+}
+

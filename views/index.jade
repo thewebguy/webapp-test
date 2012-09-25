@@ -19,7 +19,7 @@ html(manifest='manifest.appcache')
 		
 		#view-home.view.hidden
 			header
-				h1 Badge.iq
+				h1: span
 				#view-home-refresh.header-button.header-button-icon.header-button-right
 					button: img(src='images/refresh-icon.png', alt='Refresh', width='14', height='18')
 			.scroll
@@ -31,17 +31,9 @@ html(manifest='manifest.appcache')
 			header
 				a.header-button.header-button-left.header-back-button(href='#/'): button
 					.tip: span
-					| Home
-				h1
+					| Feed
+				h1 Tweet
 			.scroll
-				section
-			footer
-		
-				
-		#view-schedule.view.hidden
-			header
-				h1 Schedule
-			.scroll.striped
 				section
 			footer
 		
@@ -57,9 +49,28 @@ html(manifest='manifest.appcache')
 			footer
 		
 				
-		#view-leaderboard.view.hidden
+		#view-schedule.view.hidden
 			header
-				h1 Leaderboard
+				h1 Schedule
+			.scroll.striped
+				section
+			footer
+		
+				
+		#view-chat.view.hidden
+			header
+				h1 Chat
+			.scroll.striped
+				section
+					.grouped-tableview.cf
+						span.y-touch-icon
+						p The unofficial Hacker News mobile web app, specially designed to look and feel like a native iOS app.
+			footer
+		
+				
+		#view-score.view.hidden
+			header
+				h1 Score
 			.scroll.striped
 				section
 					.grouped-tableview.cf
@@ -79,15 +90,18 @@ html(manifest='manifest.appcache')
 				li: a#tab-home(href='#/home')
 					.icon
 					span Home
-				li: a#tab-schedule(href='#/schedule')
-					.icon
-					span Schedule
 				li: a#tab-artists(href='#/artists')
 					.icon
 					span Artists
-				li: a#tab-leaderboard(href='#/leaderboard')
+				li: a#tab-schedule(href='#/schedule')
 					.icon
-					span Leaderboard
+					span Schedule
+				li: a#tab-chat(href='#/chat')
+					.icon
+					span Chat
+				li: a#tab-score(href='#/score')
+					.icon
+					span Score
 		
 		script(src='scripts.js')
 		script(src='templates.js')

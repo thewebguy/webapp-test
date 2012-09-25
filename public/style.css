@@ -19,7 +19,7 @@ footer ul,footer li {
 footer li {
 	display: block;
 	float: left;
-	width: 25%;
+	width: 20%;
 	text-align: center;
 }
 
@@ -30,15 +30,16 @@ footer a {
 	color: #fff;
 	text-decoration: none;
 	font-size: 11px;
-	border-radius: 5px;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-weight: bold;
 }
 
+/*
 footer a.tappable-active,
 footer a.selected {
 	background: #666;
-	color: #0f0;
 }
+*/
 
 footer span {
 	display: block;
@@ -47,9 +48,13 @@ footer span {
 footer .icon {
 	width: 30px;
 	height: 30px;
-	background: #fff;
+/* 	background: #fff; */
 	display: inline-block;
 	margin-top: 5px;
+	
+	background-size: 100% 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 .view footer {
@@ -63,6 +68,9 @@ footer .icon {
 
 .post-image {
 	float: left;
+	width: 48px;
+	height: 48px;
+	background: #ccc;
 }
 
 .post-info {
@@ -87,7 +95,11 @@ footer .icon {
 	}
 
 
-.tableview-links li > a .story {
+.tableview {
+	padding: 5px 0;
+}
+
+.tableview-links li > .post-inner .story {
 	padding: 5px;
 }
 
@@ -99,21 +111,87 @@ footer .icon {
 	border: 0;
 }
 
-.tableview-links li > a {
+.tableview-links li > .post-inner {
 	background: #fff;
 	margin: 0 5px 5px;
 	width: 90%;
 
-/*
-	border-width: 0 4px 4px 0;
-	border-color: rgb(0,188,255);	
-	border-style: solid;
-*/
-	
 	border-width: 4px;
 	border-image: url(/images/border.png) 4 4 4 4 repeat;
 	padding-bottom: 4px;
 }
 
+.fake-link {
+	text-decoration: underline;
+	color: #333;
+}
+
+
+header.fake, .view > header {
+	background: url(/images/interface/header.jpg) center top;
+	background-size: 100% 100%;
+}
+#view-home header h1 {
+	width: 40%;
+	padding-top: 5px;
+}
+#view-home header h1 span {
+	display: block;
+	background: url(/images/interface/logo.png) right top no-repeat;
+	background-size: 100% 100%;
+	width: 94px;
+	height: 35px;
+	float: right;
+}
+
+body > footer {
+	background: url(/images/interface/menu.jpg) center top;
+	background-size: 100% 100%;
+}
+
+footer a.selected {
+	background: url(/images/interface/menu-on.jpg) center top no-repeat;
+	background-size: 500% 100%;
+}
+
+	footer a#tab-home.tappable-active,
+	footer a#tab-home.selected {
+		background-position: left top;
+	}
+
+
+	footer a#tab-schedule.tappable-active,
+	footer a#tab-schedule.selected,
+	
+	footer a#tab-artists.tappable-active,
+	footer a#tab-artists.selected,
+
+	footer a#tab-chat.tappable-active,
+	footer a#tab-chat.selected {
+		background-position: center top;
+	}
+
+	footer a#tab-score.tappable-active,
+	footer a#tab-score.selected {
+		background-position: right top;
+		padding-right: 2px;
+	}
+	
+	
+	footer a#tab-home .icon {
+		background-image: url(/images/interface/icon-home.png);
+	}
+	footer a#tab-schedule .icon {
+		background-image: url(/images/interface/icon-schedule.png);
+	}
+	footer a#tab-artists .icon {
+		background-image: url(/images/interface/icon-artists.png);
+	}
+	footer a#tab-chat .icon {
+		background-image: url(/images/interface/icon-chat.png);
+	}
+	footer a#tab-score .icon {
+		background-image: url(/images/interface/icon-score.png);
+	}
 
 

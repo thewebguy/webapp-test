@@ -380,7 +380,7 @@ header.fake,
 	display: box;
 	width: 100%;
 }
-.tableview-links li>a{
+.tableview-links li > .post-inner{
 	font-size: 15px;
 	line-height: 1.3em;
 	color: #000;
@@ -1437,7 +1437,7 @@ ol.grouped-tableview-links li>a.disclosure.tappable-active:after{
 		box-direction: normal;
 		background-color: #fff;
 	}
-	#view-home .tableview-links li > a .story b{
+	#view-home .tableview-links li > .post-inner .story b{
 		-webkit-line-clamp: 2;
 		overflow: hidden;
 		display: -webkit-box;

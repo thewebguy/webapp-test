@@ -1,57 +1,13 @@
-.post-content
-	{{#has_post}}
-	header
-		h1
-			a(href='{{url}}', target='_blank') {{title}}<br>
-			{{#user}}
-			{{#domain}}
-			span.link-text {{domain}}
-			{{/domain}}
-			{{/user}}
-		
-		p.metadata
-			{{#user}}
-			span.inline-block {{points}} {{i_point}} by {{user}}
-			span.inline-block {{time_ago}}{{#comments_count}} &middot; {{comments_count}} {{i_comment}}{{/comments_count}}
-			{{/user}}
-			{{^user}}
-			span.inline-block {{time_ago}}
-			{{/user}}
-			a.external-link(href='{{hn_url}}', target='_blank') {{short_hn_url}}
-	{{/has_post}}
-	
-	{{#has_content}}
-	section.grouped-tableview
-		{{content}}
-		{{#has_poll}}
-		ul.poll
-			{{#poll}}
-			li
-				span.poll-details
-					b {{item}}
-					span.points {{points}} {{i_point}}
-				.poll-bar: span(style='width:{{width}}')
-			{{/poll}}
-		{{/has_poll}}
-	{{/has_content}}
-	
-section.comments
-	{{#loading}}
-	.loader Loading&hellip;
-	{{/loading}}
-	{{#load_error}}
-	.load-error
-		| Couldn't load comments.<br>
-		button Try again
-	{{/load_error}}
-	{{^loading}}
-	{{^load_error}}
-	{{#has_comments}}
-	ul
-		{{>comments_list}}
-	{{/has_comments}}
-	{{^has_comments}}
-	p.no-comments No comments.
-	{{/has_comments}}
-	{{/load_error}}
-	{{/loading}}
+ul.tableview.tableview-links
+	li(data-index='{{i}}', class='post-{{type}}')
+		.post-inner
+			.story
+				img.post-image(src='{{image}}')
+				.post-info
+					span.post-name {{name}}
+					{{#username}}
+					span.post-username @{{username}}
+					{{/username}}
+					p.post-text {{& text}}
+
+
